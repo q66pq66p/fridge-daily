@@ -34,6 +34,11 @@ logging.basicConfig(
     level=logging.INFO,
 )
 
+# 외부 라이브러리 로그 제한
+# Telegram Bot Token이 HTTP 요청 URL에 출력되는 것을 방지
+logging.getLogger("httpx").setLevel(logging.WARNING)
+logging.getLogger("telegram").setLevel(logging.WARNING)
+
 logger = logging.getLogger(__name__)
 
 # YOLO 모델을 메시지마다 다시 로딩하지 않도록 한 번만 생성
